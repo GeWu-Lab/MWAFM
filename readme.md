@@ -1,6 +1,6 @@
 
 
-# Audio Question Answering (VQA)
+# Audio Question Answering (AQA)
 
 PyTorch code accompanies our Interspeech 2023 paper:
 
@@ -17,17 +17,14 @@ python3.6 +
 pytorch1.6.0
 tensorboardX
 ffmpeg
-numpy
 ```
-
-
 
 ## Usage
 
 1. **Clone this repo**
 
    ```python
-   https://github.com/GeWu-Lab/MUSIC-AVQA_CVPR2022.git
+   https://github.com/GeWu-Lab/MWAFM.git
    ```
 
 2. **Download data**
