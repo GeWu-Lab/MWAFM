@@ -4,7 +4,7 @@
 
 PyTorch code accompanies our Interspeech 2023 paper:
 
-**Multi-Scale Attention for Audio Question Answering** [arXiv](https://arxiv.org/abs/2305.17993)
+**Multi-Scale Attention for Audio Question Answering** \[[arXiv](https://arxiv.org/abs/2305.17993)\]
 
 [Guangyao Li](https://ayameyao.github.io/), Yixin Xu and [Di Hu](https://dtaoo.github.io/index.html)
 
