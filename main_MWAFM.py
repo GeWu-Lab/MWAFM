@@ -18,17 +18,19 @@ def train(model, train_iterator, optimizer, criterion, epoch):
 
     model.train()
 
-    for batch_idx, (audio_feat, audio_ast_feat, question, label) in enumerate(train_iterator):
+    # for batch_idx, (audio_feat, audio_ast_feat, question, label) in enumerate(train_iterator):
+    for batch_idx, (audio_feat, question, label) in enumerate(train_iterator):
 
         audio_feat = audio_feat.to(dtype=torch.float)
-        audio_ast_feat = audio_ast_feat.to(dtype=torch.float)
+        # audio_ast_feat = audio_ast_feat.to(dtype=torch.float)
         question = question.to(dtype=torch.float)
         label = label.to('cuda', dtype=torch.long)
 
         question_len = torch.ones((question.size(0),), dtype=torch.int8).to('cuda')
 
         optimizer.zero_grad()
-        logits_output = model(audio_feat, audio_ast_feat, question)
+        # logits_output = model(audio_feat, audio_ast_feat, question)
+        logits_output = model(audio_feat, question)
 
         loss = criterion(logits_output, label)
         loss.backward()
@@ -51,15 +53,17 @@ def eval(model, val_iterator, optimizer, criterion, epoch):
     correct_top_10 = 0
 
     with torch.no_grad():
-        for batch_idx, (audio_feat, audio_ast_feat, question, label) in enumerate(val_iterator):
+        # for batch_idx, (audio_feat, audio_ast_feat, question, label) in enumerate(val_iterator):
+        for batch_idx, (audio_feat, question, label) in enumerate(val_iterator):
         
             audio_feat = audio_feat.to(dtype=torch.float)
-            audio_ast_feat = audio_ast_feat.to(dtype=torch.float)
+            # audio_ast_feat = audio_ast_feat.to(dtype=torch.float)
             question = question.to(dtype=torch.float)
             label = label.to('cuda', dtype=torch.long)
             question_len = torch.ones((question.size(0),), dtype=torch.int8).to('cuda')
         
-            logits_output = model(audio_feat, audio_ast_feat, question)
+            # logits_output = model(audio_feat, audio_ast_feat, question)
+            logits_output = model(audio_feat, question)
 
 
             total += logits_output.size(0)
@@ -106,15 +110,17 @@ def test(model, test_iterator):
     correct_top_10 = 0
 
     with torch.no_grad():
-        for batch_idx, (audio_feat, audio_ast_feat, question, label) in enumerate(test_iterator):
+        # for batch_idx, (audio_feat, audio_ast_feat, question, label) in enumerate(test_iterator):
+        for batch_idx, (audio_feat, audio_feat, question, label) in enumerate(test_iterator):
         
             audio_feat = audio_feat.to(dtype=torch.float)
-            audio_ast_feat = audio_ast_feat.to(dtype=torch.float)
+            # audio_ast_feat = audio_ast_feat.to(dtype=torch.float)
             question = question.to(dtype=torch.float)
             label = label.to('cuda', dtype=torch.long)
             question_len = torch.ones((question.size(0),), dtype=torch.int8).to('cuda')
         
-            logits_output = model(audio_feat, audio_ast_feat, question)
+            # logits_output = model(audio_feat, audio_ast_feat, question)
+            logits_output = model(audio_feat, question)
 
 
             total += logits_output.size(0)
@@ -158,7 +164,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--model_save_dir", type=str, default='./checkpoints/', help="model save dir")
     parser.add_argument(
-        "--checkpoint", type=str, default='MWAFM_Net_ast',help="save model name")
+        "--checkpoint", type=str, default='MWAFM_Net',help="save model name")
     parser.add_argument(
         '--seed', type=int, default=8888, metavar='S',help='random seed (default: 1)')
     parser.add_argument(

@@ -16,7 +16,7 @@ class DataGenerator(Dataset):
         self.meta_file = meta_file
 
         self.feat_dir = data_config['feat_dir']
-        self.feat_ast_dir = data_config['feat_ast_dir']
+        # self.feat_ast_dir = data_config['feat_ast_dir']
 
         self.audio_fnames, self.qs, self.ans = read_metadata(self.meta_file)
 
@@ -33,7 +33,7 @@ class DataGenerator(Dataset):
         audio_feat = self.load_audio_features(item)
 
         audio_name = self.audio_fnames[item][:-3] + 'npy'
-        audio_ast_feat = np.load(os.path.join(self.feat_ast_dir, audio_name))
+        # audio_ast_feat = np.load(os.path.join(self.feat_ast_dir, audio_name))
 
         question_text = self.qs[item]
         answer_text = self.ans[item]
@@ -47,7 +47,8 @@ class DataGenerator(Dataset):
         else:
             label = self.answers_dict[answer_text]
 
-        return audio_feat, audio_ast_feat, question_embedding, label
+        # return audio_feat, audio_ast_feat, question_embedding, label
+        return audio_feat, question_embedding, label
 
     def load_audio_features(self, idx):
         # audio_feat_file = self.audio_fnames[idx][:-3] + 'npz'

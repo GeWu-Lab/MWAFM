@@ -1,13 +1,18 @@
 data_config = {
 
-    'train_metadata_path': 'metadata/clotho_aqa_train_clean.csv',  # CSV containing audio URLs, Questions, Answers,filenames
-    'val_metadata_path': 'metadata/clotho_aqa_val_clean.csv',
-    'test_metadata_path': 'metadata/clotho_aqa_test_clean.csv',
-    'output_classes_file': 'metadata/output_classes_clean.json',
+    # 'train_metadata_path': 'metadata/clotho_aqa_train_clean.csv',  # CSV containing audio URLs, Questions, Answers,filenames
+    # 'val_metadata_path': 'metadata/clotho_aqa_val_clean.csv',
+    # 'test_metadata_path': 'metadata/clotho_aqa_test_clean.csv',
+    # 'output_classes_file': 'metadata/output_classes_clean.json',
 
-    'data_dir': '/home/data/clotho-aqa/audio_16kHz',  # path to store downloaded data
+    'train_metadata_path': 'metadata/single_word_train.csv',  # CSV containing audio URLs, Questions, Answers,filenames
+    'val_metadata_path': 'metadata/single_word_val.csv',
+    'test_metadata_path': 'metadata/single_word_test.csv',
+    'output_classes_file': 'metadata/output_classes.json',
+
+    # 'data_dir': '/home/data/clotho-aqa/audio_16kHz',  # path to store downloaded data
     'feat_dir': '/home/data/clotho-aqa/vggish',
-    'feat_ast_dir': '/home/data/clotho-aqa/feats/ast',
+    # 'feat_ast_dir': '/home/data/clotho-aqa/feats/ast',
     # 'feat_dir': '/home/guangyao_li/dataset/clotho-aqa/audio_spec',
     'question_dir': './metadata/questions.csv',
     'pre_trained_word_embeddings_file': './pretrained/wiki-news-300d-1M.vec',

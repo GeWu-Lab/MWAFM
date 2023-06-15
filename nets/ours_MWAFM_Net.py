@@ -5,7 +5,7 @@ from torch.autograd import Variable
 import numpy
 import copy
 import math
-from MultiScaleModel.multi_attention import MultiScaleSelfAttention
+from nets.multi_attention import MultiScaleSelfAttention
 
 
 class QstEncoder(nn.Module):
@@ -175,8 +175,8 @@ class MWAFM_Net(nn.Module):
         super(MWAFM_Net, self).__init__()
 
 
-        self.audio_ast_fc = nn.Linear(768, 512)
-        self.fusion_ast_fc = nn.Linear(1024, 512)
+        # self.audio_ast_fc = nn.Linear(768, 512)
+        # self.fusion_ast_fc = nn.Linear(1024, 512)
  
         self.audio_fc =  nn.Linear(128, 512)
 
@@ -292,14 +292,15 @@ class MWAFM_Net(nn.Module):
         return key_value_feat_att.permute(1, 0, 2)
 
 
-    def forward(self, audio, audio_ast_feat, question):
+    # def forward(self, audio, audio_ast_feat, question):
+    def forward(self, audio, question):
 
         ### feature input
         audio_feat = self.audio_fc(audio)               # [B, T, C]
         qst_feat = self.question_fc(question)
 
-        audio_ast_feat = self.audio_ast_fc(audio_ast_feat)
-        audio_ast_feat = F.relu(audio_ast_feat)
+        # audio_ast_feat = self.audio_ast_fc(audio_ast_feat)
+        # audio_ast_feat = F.relu(audio_ast_feat)
         
         audio_feat_grd = audio_feat
         qst_feat_grd = qst_feat
@@ -341,7 +342,6 @@ class MWAFM_Net(nn.Module):
 
         # add
         # audio_feat_kv = audio_feat_kv + audio_ast_feat.mean(-2)
-
         qst_feat = qst_feat.mean(dim=1)
         combine_feat = torch.mul(audio_feat_kv, qst_feat)
         
