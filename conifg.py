@@ -13,7 +13,7 @@ data_config = {
     # 'data_dir': '/home/data/clotho-aqa/audio_16kHz',  # path to store downloaded data
     'feat_dir': '/home/data/clotho-aqa/vggish',
     # 'feat_ast_dir': '/home/data/clotho-aqa/feats/ast',
-    # 'feat_dir': '/home/guangyao_li/dataset/clotho-aqa/audio_spec',
+    # 'feat_dir': '/home/data/clotho-aqa/audio_spec',
     'question_dir': './metadata/questions.csv',
     'pre_trained_word_embeddings_file': './pretrained/wiki-news-300d-1M.vec',
     'audio_embedding_size': 512,
@@ -57,7 +57,7 @@ model_config = {
 if 'binary' in data_config['train_metadata_path']:
     model_config['n_classes'] = 1
 else:
-    model_config['n_classes'] = 828
+    model_config['n_classes'] = 828                 # Notice! output dim!
     model_config['audio_lstm_hidden_size'] = 512
     model_config['text_lstm_hidden_size'] = 512
 
